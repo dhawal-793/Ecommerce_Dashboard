@@ -1,6 +1,5 @@
 'use client'
 
-import { UserButton } from "@clerk/nextjs";
 import { useEffect } from "react";
 
 import { useStoreModal } from "@/hooks/use-store-modal";
@@ -15,12 +14,5 @@ export default function Home() {
     }
   }, [onOpen, isOpen])
 
-  return (
-    <>
-      <div className="flex items-center justify-end p-4">
-        <UserButton afterSignOutUrl="/" />
-      </div>
-    </>
-
-  )
+  return null
 }
