@@ -43,9 +43,11 @@ const SettingsForm: FC<SettingsFormProps> = ({ initialData }) => {
         <>
             <div className='flex items-center justify-between' >
                 <Heading title="Settings" description='Manage store preferences' />
-                <Button variant="destructive"
+                <Button
+                    variant="destructive"
+                    disabled={loading}
                     size="sm"
-                    onClick={() => { }}
+                    onClick={() => setOpen(true)}
                 >
                     <Trash className='w-4 h-4' />
                 </Button>
