@@ -3,6 +3,7 @@ import { FC } from 'react'
 import { auth } from "@clerk/nextjs"
 import { redirect } from "next/navigation"
 import prismaDb from '@/lib/prismaDb'
+import SettingsForm from './components/SettingsForm'
 
 interface SetingsProps {
     params: {
@@ -24,7 +25,7 @@ const page: FC<SetingsProps> = async ({ params: { storeId } }) => {
     return (
         <div className='flex flex-col'>
             <div className='flex-1 p-8 pt-6 space-y-4'>
-                <h1 className='text-2xl font-bold'>Settings</h1>
+                <SettingsForm initialData={store} />
             </div>
         </div>
     )
