@@ -1,5 +1,6 @@
 'use client'
 
+import AlertModal from '@/components/modals/alert-modal'
 import { Button } from '@/components/ui/button'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import Heading from '@/components/ui/heading'
@@ -54,8 +55,25 @@ const SettingsForm: FC<SettingsFormProps> = ({ initialData }) => {
         }
     }
 
+    const onDelete = async () => {
+        try {
+            setLoading(true)
+            await axios.delete(`/api/stores/${params.storeId}`)
+            router.refresh()
+            toast.success("Store deleted successfully")
+
+        } catch (error) {
+            toast.error("Make sure to remove all products and categories first.")
+        }
+        finally {
+            setLoading(false)
+            setOpen(false)
+        }
+    }
+
     return (
         <>
+            <AlertModal isOpen={open} onClose={() => setOpen(false)} loading={loading} onConfirm={onDelete} />
             <div className='flex items-center justify-between' >
                 <Heading title="Settings" description='Manage store preferences' />
                 <Button
@@ -70,7 +88,6 @@ const SettingsForm: FC<SettingsFormProps> = ({ initialData }) => {
             <Separator />
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8 wfull'>
-
                     <div className="grid grid-cols-3 gap-8">
                         <FormField
                             control={form.control}
