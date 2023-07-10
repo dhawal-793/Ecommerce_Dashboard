@@ -1,10 +1,10 @@
 'use client'
 
-import { Store } from '@prisma/client'
 import { FC, useState } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { Store } from '@prisma/client'
 import { Trash } from 'lucide-react'
 import { toast } from 'react-hot-toast'
 import * as z from 'zod'

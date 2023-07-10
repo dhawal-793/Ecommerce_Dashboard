@@ -1,6 +1,7 @@
-import prismaDb from "@/lib/prismaDb"
 import { auth } from "@clerk/nextjs"
 import { redirect } from "next/navigation"
+
+import prismaDb from "@/lib/prismaDb"
 
 export default async function SetUpLayout({ children }: { children: React.ReactNode }) {
 

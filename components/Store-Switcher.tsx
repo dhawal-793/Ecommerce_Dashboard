@@ -1,14 +1,15 @@
 'use client'
 
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
-import { Store } from '@prisma/client'
-import { useStoreModal } from '@/hooks/use-store-modal';
 import { useParams, useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { Button } from '@/components/ui/button';
+import { Store } from '@prisma/client'
 import { Check, ChevronsUpDown, PlusCircle, Store as StoreIcon } from 'lucide-react';
-import { cn } from '@/lib/utils';
+
+import { Button } from '@/components/ui/button';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator } from '@/components/ui/command';
+import { useStoreModal } from '@/hooks/use-store-modal';
+import { cn } from '@/lib/utils';
 
 type PopoverTriggerProps = React.ComponentPropsWithoutRef<typeof PopoverTrigger>
 

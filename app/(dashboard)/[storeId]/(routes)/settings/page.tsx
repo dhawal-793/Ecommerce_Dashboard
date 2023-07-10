@@ -1,7 +1,7 @@
 import { FC } from 'react'
-
 import { auth } from "@clerk/nextjs"
 import { redirect } from "next/navigation"
+
 import prismaDb from '@/lib/prismaDb'
 import SettingsForm from './components/SettingsForm'
 
