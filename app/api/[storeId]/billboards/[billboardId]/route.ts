@@ -42,6 +42,39 @@ export async function PATCH(req: Request, { params }: { params: { storeId: strin
     }
 }
 
+export async function DELETE(req: Request, { params }: { params: { storeId: string, billboardId: string } }) {
+    try {
+
+        const { userId } = auth()
+        if (!userId) return new NextResponse("Unauthorized", { status: 401 })
+
+        const { storeId, billboardId } = params
+        if (!storeId) return new NextResponse("StoreId is required", { status: 400 })
+        if (!billboardId) return new NextResponse("BillBoardId is required", { status: 400 })
+
+        const storeByUserId = await prismaDb.store.findFirst({
+            where: {
+                id: params.storeId,
+                userId
+            }
+        })
+        if (!storeByUserId) {
+            return new NextResponse("Unauthorized", { status: 403 })
+        }
+
+        const billboard = await prismaDb.billboard.deleteMany({
+            where: { id: billboardId }
+        })
+
+        return NextResponse.json(billboard)
+
+    } catch (error) {
+        console.error(`[BILLBOARD_DELETE] =>`, error)
+        return new NextResponse("Internal Server Error", { status: 500 })
+    }
+}
+
+
 export async function GET(req: Request, { params }: { params: { billboardId: string } }) {
     try {
 
