@@ -6,7 +6,7 @@ import prismaDb from "@/lib/prismaDb"
 export async function POST(req: Request) {
     try {
         const { userId } = auth()
-        if (!userId) return new NextResponse("Unauthorized", { status: 401 })
+        if (!userId) return new NextResponse("Unauthenticated", { status: 401 })
 
         const { name } = await req.json()
         if (!name) return new NextResponse("Name is required", { status: 400 })
