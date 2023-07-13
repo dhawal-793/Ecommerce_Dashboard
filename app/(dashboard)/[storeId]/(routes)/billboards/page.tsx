@@ -30,7 +30,7 @@ const Billboards: FC<BillboardsProps> = async ({ params }) => {
 
         id: billboard.id,
         label: billboard.label,
-        createdAt: format(billboard.createdAt, "MMMM,d0,yyyy")
+        createdAt: format(billboard.createdAt, "MMMM, do, yyyy")
     }))
 
     return (
