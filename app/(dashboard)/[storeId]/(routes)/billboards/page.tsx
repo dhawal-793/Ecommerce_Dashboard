@@ -1,5 +1,5 @@
 
-
+import { format } from 'date-fns'
 
 import prismaDb from "@/lib/prismaDb"
 import BillboardClient from "./components/BillboardClient"
@@ -8,6 +8,7 @@ import BillboardClient from "./components/BillboardClient"
 
 
 import { FC } from 'react'
+import { BillboardColumn } from "./components/colums"
 
 interface BillboardsProps {
     params: {
@@ -25,11 +26,17 @@ const Billboards: FC<BillboardsProps> = async ({ params }) => {
         }
     })
 
-    
+    const formattedBillboards: BillboardColumn[] = billboards.map(billboard => ({
+
+        id: billboard.id,
+        label: billboard.label,
+        createdAt: format(billboard.createdAt, "MMMM,d0,yyyy")
+    }))
+
     return (
         <div className="flex flex-col">
             <div className="flex-1 p-8 pt-6 space-y-4">
-                <BillboardClient data={billboards} />
+                <BillboardClient data={formattedBillboards} />
             </div>
         </div>
     )
