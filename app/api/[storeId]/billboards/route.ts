@@ -44,9 +44,6 @@ export async function POST(req: Request, { params }: { params: { storeId: string
 export async function GET(req: Request, { params }: { params: { storeId: string } }) {
     try {
 
-        const { userId } = auth()
-        if (!userId) return new NextResponse("Unauthenticated", { status: 401 })
-
         const billboards = await prismaDb.billboard.findMany({
             where: {
                 storeId: params.storeId
