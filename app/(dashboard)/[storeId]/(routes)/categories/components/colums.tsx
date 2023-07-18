@@ -26,5 +26,8 @@ export const columns: ColumnDef<CategoryColumn>[] = [
         accessorKey: "createdAt",
         header: "Date",
     },
-
+    {
+        id: "actions",
+        cell: ({ row }) => <CellAction data={row.original} />
+    }
 ]
