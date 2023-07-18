@@ -106,7 +106,7 @@ const BillboardForm: FC<BillboardFormProps> = ({ initialData }) => {
             </div>
             <Separator />
             <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8 wfull'>
+                <form onSubmit={form.handleSubmit(onSubmit)} className='w-full space-y-8'>
                     <FormField
                         control={form.control}
                         name="imageUrl"
