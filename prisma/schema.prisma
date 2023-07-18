@@ -41,7 +41,7 @@ model Category {
 
   billboardId String
   billboard   Billboard @relation(fields: [billboardId], references: [id])
-  imageUrl    String
+  name    String
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
 
