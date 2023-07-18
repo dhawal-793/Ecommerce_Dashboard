@@ -1,11 +1,14 @@
 'use client'
 
 import { FC, useState } from 'react'
+import { useParams, useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Billboard, Category } from '@prisma/client'
 import { Trash } from 'lucide-react'
+import { toast } from 'react-hot-toast'
 import * as z from 'zod'
+import axios from 'axios'
 
 import AlertModal from '@/components/modals/alert-modal'
 import Heading from '@/components/ui/heading'
@@ -29,11 +32,15 @@ interface CategoryFormProps {
 
 const CategoryForm: FC<CategoryFormProps> = ({ initialData, billboards }) => {
 
+    const params = useParams()
+    const router = useRouter()
+
     const [open, setOpen] = useState<boolean>(false)
     const [loading, setLoading] = useState<boolean>(false)
 
     const title = initialData ? "Edit Category" : "Create Category"
     const description = initialData ? "Edit a Category" : "Add a new Category"
+    const toastMessage = initialData ? "Category updated" : "Category created"
     const action = initialData ? "Save Changes" : "Create"
 
     const form = useForm<CategoryformVaues>({
@@ -44,8 +51,25 @@ const CategoryForm: FC<CategoryFormProps> = ({ initialData, billboards }) => {
         }
     })
 
-    const onSubmit = (data: CategoryformVaues) => {
-        console.log(data)
+    const onSubmit = async (data: CategoryformVaues) => {
+        try {
+            setLoading(true)
+            if (initialData) {
+                await axios.patch(`/api/${params.storeId}/categories/${params.categoryId}`, data)
+            }
+            else {
+                await axios.post(`/api/${params.storeId}/categories`, data)
+            }
+            router.refresh()
+            router.push(`/${params.storeId}/categories`)
+            toast.success(toastMessage)
+
+        } catch (error) {
+            toast.error("Something went wrong")
+        }
+        finally {
+            setLoading(false)
+        }
     }
 
     const onDelete = () => { }
