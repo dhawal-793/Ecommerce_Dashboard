@@ -41,6 +41,37 @@ export async function PATCH(req: Request, { params }: { params: { storeId: strin
     }
 }
 
+export async function DELETE(req: Request, { params }: { params: { storeId: string, categoryId: string } }) {
+    try {
+
+        const { userId } = auth()
+        if (!userId) return new NextResponse("Unauthenticated", { status: 401 })
+
+        const { storeId, categoryId } = params
+        if (!storeId) return new NextResponse("StoreId is required", { status: 400 })
+        if (!categoryId) return new NextResponse("CategoryId is required", { status: 400 })
+
+        const storeByUserId = await prismaDb.store.findFirst({
+            where: {
+                id: params.storeId,
+                userId
+            }
+        })
+        if (!storeByUserId) {
+            return new NextResponse("Unauthorized", { status: 403 })
+        }
+
+        const category = await prismaDb.category.deleteMany({
+            where: { id: categoryId }
+        })
+        return NextResponse.json(category)
+
+    } catch (error) {
+        console.error(`[CATEGORY_DELETE] =>`, error)
+        return new NextResponse("Internal Server Error", { status: 500 })
+    }
+}
+
 export async function GET(req: Request, { params }: { params: { categoryId: string } }) {
     try {
 
