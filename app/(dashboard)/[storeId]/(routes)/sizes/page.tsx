@@ -28,7 +28,7 @@ const Sizes: FC<SizesProps> = async ({ params }) => {
 
         id: size.id,
         name: size.name,
-        value:size.name,
+        value:size.value,
         createdAt: format(size.createdAt, "MMMM, do, yyyy")
     }))
 
