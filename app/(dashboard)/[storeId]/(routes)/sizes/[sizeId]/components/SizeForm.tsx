@@ -79,7 +79,7 @@ const SizeForm: FC<SizeFormProps> = ({ initialData }) => {
             toast.success("Size Deleted.")
 
         } catch (error) {
-            toast.error("Make sure to remove all products using this billboard first.")
+            toast.error("Make sure to remove all products using this size first.")
         }
         finally {
             setLoading(false)
