@@ -37,6 +37,11 @@ const MainNav = ({ className, ...props }:
             active: pathName === `/${params.storeId}/colors`
         },
         {
+            href: `/${params.storeId}/products`,
+            label: "Products",
+            active: pathName === `/${params.storeId}/products`
+        },
+        {
             href: `/${params.storeId}/settings`,
             label: "settings",
             active: pathName === `/${params.storeId}/settings`
