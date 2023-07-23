@@ -22,10 +22,13 @@ export const columns: ColumnDef<ProductColumn>[] = [
         accessorKey: "name",
         header: "Name",
     },
-
     {
         accessorKey: "price",
         header: "Price",
+    },
+    {
+        accessorKey: "category",
+        header: "Category",
     },
     {
         accessorKey: "size",
@@ -48,10 +51,20 @@ export const columns: ColumnDef<ProductColumn>[] = [
     {
         accessorKey: "iaArchived",
         header: "Archived",
+        cell: ({ row }) => (
+            <div className="flex items-center gap-x-2">
+                {row.original.isArchived ? "Yes" : "No"}
+            </div>
+        )
     },
     {
         accessorKey: "iaFeatured",
         header: "Featured",
+        cell: ({ row }) => (
+            <div className="flex items-center gap-x-2">
+                {row.original.isFeatured ? "Yes" : "No"}
+            </div>
+        )
     },
     {
         id: "actions",
