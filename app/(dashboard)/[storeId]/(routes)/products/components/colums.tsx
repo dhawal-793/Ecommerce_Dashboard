@@ -22,14 +22,7 @@ export const columns: ColumnDef<ProductColumn>[] = [
         accessorKey: "name",
         header: "Name",
     },
-    {
-        accessorKey: "iaArchived",
-        header: "Archived",
-    },
-    {
-        accessorKey: "iaFeatured",
-        header: "Featured",
-    },
+
     {
         accessorKey: "price",
         header: "Price",
@@ -51,6 +44,14 @@ export const columns: ColumnDef<ProductColumn>[] = [
     {
         accessorKey: "createdAt",
         header: "Date",
+    },
+    {
+        accessorKey: "iaArchived",
+        header: "Archived",
+    },
+    {
+        accessorKey: "iaFeatured",
+        header: "Featured",
     },
     {
         id: "actions",
