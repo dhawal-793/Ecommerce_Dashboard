@@ -7,6 +7,7 @@ import { getTotalSales } from '@/actions/getTotalSales';
 import { formatter } from "@/lib/utils";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import OverviewChart from '@/components/OverviewChart';
 import Heading from "@/components/ui/heading";
 
 interface DashboardPageProps {
@@ -60,6 +61,14 @@ const DashboardPage: FC<DashboardPageProps> = async ({ params }) => {
                         </CardContent>
                     </Card>
                 </div>
+                <Card>
+                    <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0" >
+                        <CardTitle className="text-sm font-medium">Overview</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                        <OverviewChart data={[]} />
+                    </CardContent>
+                </Card>
             </div>
         </div>
     )
