@@ -4,6 +4,7 @@ import { CreditCard, IndianRupee, Package } from "lucide-react";
 import { getTotalRevenue } from '@/actions/getTotalRevenue';
 import { getStocksCount } from '@/actions/getStocksCount';
 import { getTotalSales } from '@/actions/getTotalSales';
+import { getGraphRevenue } from '@/actions/getGraphRevenue';
 import { formatter } from "@/lib/utils";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
@@ -20,6 +21,7 @@ const DashboardPage: FC<DashboardPageProps> = async ({ params }) => {
     const totalRevenue = await getTotalRevenue(params.storeId)
     const salesCount = await getTotalSales(params.storeId)
     const StocksCount = await getStocksCount(params.storeId)
+    const OverviewData = await getGraphRevenue(params.storeId)
 
     return (
         <div className="flex flex-col">
@@ -66,7 +68,7 @@ const DashboardPage: FC<DashboardPageProps> = async ({ params }) => {
                         <CardTitle className="text-sm font-medium">Overview</CardTitle>
                     </CardHeader>
                     <CardContent>
-                        <OverviewChart data={[]} />
+                        <OverviewChart data={OverviewData} />
                     </CardContent>
                 </Card>
             </div>
