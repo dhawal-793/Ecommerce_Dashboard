@@ -4,7 +4,10 @@ import { FC } from 'react'
 import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from 'recharts'
 
 interface OverviewChartProps {
-    data: any[]
+    data: {
+        name: string;
+        total: number;
+    }[]
 }
 
 const OverviewChart: FC<OverviewChartProps> = ({ data }) => {
