@@ -20,6 +20,4 @@ export async function POST(req: Request) {
         console.error(`[STORES_POST] =>`, error)
         return new NextResponse("Internal Server Error", { status: 500 })
     }
-
-
 }
